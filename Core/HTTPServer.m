@@ -151,7 +151,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_INFO; // | HTTP_LOG_FLAG_TRACE;
 	
 	if (value && ![value isKindOfClass:[NSString class]])
 	{
-		HTTPLogWarn(@"%@: %@ - Expecting NSString parameter, received %@ parameter",
+		//HTTPLogWarn(@"%@: %@ - Expecting NSString parameter, received %@ parameter",
 					THIS_FILE, THIS_METHOD, NSStringFromClass([value class]));
 		return;
 	}
@@ -653,7 +653,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_INFO; // | HTTP_LOG_FLAG_TRACE;
 	// 
 	// Note: This method in invoked on our bonjour thread.
 	
-	HTTPLogWarn(@"Failed to Publish Service: domain(%@) type(%@) name(%@) - %@",
+	//HTTPLogWarn(@"Failed to Publish Service: domain(%@) type(%@) name(%@) - %@",
 	                                         [ns domain], [ns type], [ns name], errorDict);
 }
 

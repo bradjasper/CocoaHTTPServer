@@ -50,7 +50,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
         return self;
     }
 	if( nil == boundary ) {
-		HTTPLogWarn(@"MultipartFormDataParser: init with zero boundary");
+		//HTTPLogWarn(@"MultipartFormDataParser: init with zero boundary");
 		return nil;
 	}
     boundaryData = [[@"\r\n--" stringByAppendingString:boundary] dataUsingEncoding:NSASCIIStringEncoding];
@@ -310,10 +310,10 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 		// in debug, we might also want to know, if the file is somehow misformatted.
 #ifdef DEBUG
 		if( !isspace(*(bytes+offset)) ) {
-			HTTPLogWarn(@"MultipartFormDataParser: Warning, non-whitespace character '%c' between boundary bytes and CRLF in boundary line",*(bytes+offset) );
+			//HTTPLogWarn(@"MultipartFormDataParser: Warning, non-whitespace character '%c' between boundary bytes and CRLF in boundary line",*(bytes+offset) );
 		}
 		if( !isspace(*(bytes+offset+1)) ) {
-			HTTPLogWarn(@"MultipartFormDataParser: Warning, non-whitespace character '%c' between boundary bytes and CRLF in boundary line",*(bytes+offset+1) );
+			//HTTPLogWarn(@"MultipartFormDataParser: Warning, non-whitespace character '%c' between boundary bytes and CRLF in boundary line",*(bytes+offset+1) );
 		}
 #endif
 		offset++;
@@ -490,7 +490,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 			count = 0;
 
 			if( length < 3 ) {
-				HTTPLogWarn(@"MultipartFormDataParser: warning, trailing '=' in quoted printable data");
+				//HTTPLogWarn(@"MultipartFormDataParser: warning, trailing '=' in quoted printable data");
 			}
 			// soft newline
 			if( bytes[0] == '\r' ) {
@@ -516,7 +516,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 
 #ifdef DEBUG
 		if( (unsigned char) bytes[count] > 126 ) {
-			HTTPLogWarn(@"MultipartFormDataParser: Warning, character with code above 126 appears in quoted printable encoded data");
+			//HTTPLogWarn(@"MultipartFormDataParser: Warning, character with code above 126 appears in quoted printable encoded data");
 		}
 #endif
 		

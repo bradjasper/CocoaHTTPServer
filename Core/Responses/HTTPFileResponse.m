@@ -30,7 +30,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 		filePath = [[fpath copy] stringByResolvingSymlinksInPath];
 		if (filePath == nil)
 		{
-			HTTPLogWarn(@"%@: Init failed - Nil filePath", THIS_FILE);
+			//HTTPLogWarn(@"%@: Init failed - Nil filePath", THIS_FILE);
 			
 			return nil;
 		}
@@ -38,7 +38,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 		NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
 		if (fileAttributes == nil)
 		{
-			HTTPLogWarn(@"%@: Init failed - Unable to get file attributes. filePath: %@", THIS_FILE, filePath);
+			//HTTPLogWarn(@"%@: Init failed - Unable to get file attributes. filePath: %@", THIS_FILE, filePath);
 			
 			return nil;
 		}

@@ -935,7 +935,7 @@ static NSMutableArray *recentNonces;
 			// But gracefully handle the situation if it forgot.
 			if ([asyncSocket delegate] == self)
 			{
-				HTTPLogWarn(@"%@[%p]: WebSocket forgot to set itself as socket delegate", THIS_FILE, self);
+				//HTTPLogWarn(@"%@[%p]: WebSocket forgot to set itself as socket delegate", THIS_FILE, self);
 				
 				// Disconnect the socket.
 				// The socketDidDisconnect delegate method will handle everything else.
@@ -1571,7 +1571,7 @@ static NSMutableArray *recentNonces;
 	
 	if (documentRoot == nil)
 	{
-		HTTPLogWarn(@"%@[%p]: No configured document root", THIS_FILE, self);
+		//HTTPLogWarn(@"%@[%p]: No configured document root", THIS_FILE, self);
 		return nil;
 	}
 	
@@ -1582,7 +1582,7 @@ static NSMutableArray *recentNonces;
 	NSURL *docRoot = [NSURL fileURLWithPath:documentRoot isDirectory:YES];
 	if (docRoot == nil)
 	{
-		HTTPLogWarn(@"%@[%p]: Document root is invalid file path", THIS_FILE, self);
+		//HTTPLogWarn(@"%@[%p]: Document root is invalid file path", THIS_FILE, self);
 		return nil;
 	}
 	
@@ -1624,7 +1624,7 @@ static NSMutableArray *recentNonces;
 	
 	if (![fullPath hasPrefix:documentRoot])
 	{
-		HTTPLogWarn(@"%@[%p]: Request for file outside document root", THIS_FILE, self);
+		//HTTPLogWarn(@"%@[%p]: Request for file outside document root", THIS_FILE, self);
 		return nil;
 	}
 	
@@ -1755,7 +1755,7 @@ static NSMutableArray *recentNonces;
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
 	
-	HTTPLogWarn(@"HTTP Server: Error 505 - Version Not Supported: %@ (%@)", version, [self requestURI]);
+	//HTTPLogWarn(@"HTTP Server: Error 505 - Version Not Supported: %@ (%@)", version, [self requestURI]);
 	
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:505 description:nil version:HTTPVersion1_1];
 	[response setHeaderField:@"Content-Length" value:@"0"];
@@ -1805,7 +1805,7 @@ static NSMutableArray *recentNonces;
 	// If you simply want to add a few extra header fields, see the preprocessErrorResponse: method.
 	// You can also use preprocessErrorResponse: to add an optional HTML body.
 	
-	HTTPLogWarn(@"HTTP Server: Error 400 - Bad Request (%@)", [self requestURI]);
+	//HTTPLogWarn(@"HTTP Server: Error 400 - Bad Request (%@)", [self requestURI]);
 	
 	// Status Code 400 - Bad Request
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:400 description:nil version:HTTPVersion1_1];
@@ -1833,7 +1833,7 @@ static NSMutableArray *recentNonces;
 	// 
 	// See also: supportsMethod:atPath:
 	
-	HTTPLogWarn(@"HTTP Server: Error 405 - Method Not Allowed: %@ (%@)", method, [self requestURI]);
+	//HTTPLogWarn(@"HTTP Server: Error 405 - Method Not Allowed: %@ (%@)", method, [self requestURI]);
 	
 	// Status code 405 - Method Not Allowed
 	HTTPMessage *response = [[HTTPMessage alloc] initResponseWithStatusCode:405 description:nil version:HTTPVersion1_1];
@@ -2017,7 +2017,7 @@ static NSMutableArray *recentNonces;
 		BOOL result = [request appendData:data];
 		if (!result)
 		{
-			HTTPLogWarn(@"%@[%p]: Malformed request", THIS_FILE, self);
+			//HTTPLogWarn(@"%@[%p]: Malformed request", THIS_FILE, self);
 			
 			[self handleInvalidRequest:data];
 		}
@@ -2072,7 +2072,7 @@ static NSMutableArray *recentNonces;
 				{
 					if (contentLength == nil)
 					{
-						HTTPLogWarn(@"%@[%p]: Method expects request body, but had no specified Content-Length",
+						//HTTPLogWarn(@"%@[%p]: Method expects request body, but had no specified Content-Length",
 									THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
@@ -2081,7 +2081,7 @@ static NSMutableArray *recentNonces;
 					
 					if (![NSNumber parseString:(NSString *)contentLength intoUInt64:&requestContentLength])
 					{
-						HTTPLogWarn(@"%@[%p]: Unable to parse Content-Length header into a valid number",
+						//HTTPLogWarn(@"%@[%p]: Unable to parse Content-Length header into a valid number",
 									THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
@@ -2098,7 +2098,7 @@ static NSMutableArray *recentNonces;
 					
 					if (![NSNumber parseString:(NSString *)contentLength intoUInt64:&requestContentLength])
 					{
-						HTTPLogWarn(@"%@[%p]: Unable to parse Content-Length header into a valid number",
+						//HTTPLogWarn(@"%@[%p]: Unable to parse Content-Length header into a valid number",
 									THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
@@ -2107,7 +2107,7 @@ static NSMutableArray *recentNonces;
 					
 					if (requestContentLength > 0)
 					{
-						HTTPLogWarn(@"%@[%p]: Method not expecting request body had non-zero Content-Length",
+						//HTTPLogWarn(@"%@[%p]: Method not expecting request body had non-zero Content-Length",
 									THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
@@ -2211,7 +2211,7 @@ static NSMutableArray *recentNonces;
 			
 			if (errno != 0)
 			{
-				HTTPLogWarn(@"%@[%p]: Method expects chunk size, but received something else", THIS_FILE, self);
+				//HTTPLogWarn(@"%@[%p]: Method expects chunk size, but received something else", THIS_FILE, self);
 				
 				[self handleInvalidRequest:nil];
 				return;
@@ -2276,7 +2276,7 @@ static NSMutableArray *recentNonces;
 			
 			if (![data isEqualToData:[GCDAsyncSocket CRLFData]])
 			{
-				HTTPLogWarn(@"%@[%p]: Method expects chunk trailer, but is missing", THIS_FILE, self);
+				//HTTPLogWarn(@"%@[%p]: Method expects chunk trailer, but is missing", THIS_FILE, self);
 				
 				[self handleInvalidRequest:nil];
 				return;
@@ -2506,7 +2506,7 @@ static NSMutableArray *recentNonces;
 		
 		if (sender != httpResponse)
 		{
-			HTTPLogWarn(@"%@[%p]: %@ - Sender is not current httpResponse", THIS_FILE, self, THIS_METHOD);
+			//HTTPLogWarn(@"%@[%p]: %@ - Sender is not current httpResponse", THIS_FILE, self, THIS_METHOD);
 			return;
 		}
 		
@@ -2549,7 +2549,7 @@ static NSMutableArray *recentNonces;
 		
 		if (sender != httpResponse)
 		{
-			HTTPLogWarn(@"%@[%p]: %@ - Sender is not current httpResponse", THIS_FILE, self, THIS_METHOD);
+			//HTTPLogWarn(@"%@[%p]: %@ - Sender is not current httpResponse", THIS_FILE, self, THIS_METHOD);
 			return;
 		}
 		

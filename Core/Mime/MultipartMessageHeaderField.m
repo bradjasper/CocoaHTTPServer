@@ -124,12 +124,12 @@ NSString* extractParamValue(const char* bytes, NSUInteger length, NSStringEncodi
 			}
 			NSString* paramValue = extractParamValue(bytes, offset,encoding);
 			 if( nil == paramValue ) {
-				HTTPLogWarn(@"MultipartFormDataParser: Failed to exctract paramValue for key %@ in header %@",currentParam,name);
+				//HTTPLogWarn(@"MultipartFormDataParser: Failed to exctract paramValue for key %@ in header %@",currentParam,name);
 			}
 			else {
 #ifdef DEBUG
 				if( [params objectForKey:currentParam] ) {
-					HTTPLogWarn(@"MultipartFormDataParser: param %@ mentioned more then once in header %@",currentParam,name);
+					//HTTPLogWarn(@"MultipartFormDataParser: param %@ mentioned more then once in header %@",currentParam,name);
 				}
 #endif
 				[params setObject:paramValue forKey:currentParam];
@@ -148,7 +148,7 @@ NSString* extractParamValue(const char* bytes, NSUInteger length, NSStringEncodi
 
 	// add last param
 	if( insideQuote ) {
-		HTTPLogWarn(@"MultipartFormDataParser: unterminated quote in header %@",name);
+		//HTTPLogWarn(@"MultipartFormDataParser: unterminated quote in header %@",name);
 //		return YES;
 	}
 	if( currentParam ) {
@@ -160,7 +160,7 @@ NSString* extractParamValue(const char* bytes, NSUInteger length, NSStringEncodi
 
 #ifdef DEBUG
 		if( [params objectForKey:currentParam] ) {
-			HTTPLogWarn(@"MultipartFormDataParser: param %@ mentioned more then once in one header",currentParam);
+			//HTTPLogWarn(@"MultipartFormDataParser: param %@ mentioned more then once in one header",currentParam);
 		}
 #endif
 		[params setObject:paramValue forKey:currentParam];
