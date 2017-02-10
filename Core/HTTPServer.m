@@ -152,7 +152,7 @@
 	if (value && ![value isKindOfClass:[NSString class]])
 	{
 		//HTTPLogWarn(@"%@: %@ - Expecting NSString parameter, received %@ parameter",
-					THIS_FILE, THIS_METHOD, NSStringFromClass([value class]));
+					//THIS_FILE, THIS_METHOD, NSStringFromClass([value class]));
 		return;
 	}
 	
