@@ -77,11 +77,11 @@
 
 // Setup the usual boolean macros.
 
-#define HTTP_LOG_ERROR   (httpLogLevel & HTTP_LOG_FLAG_ERROR)
-#define HTTP_LOG_WARN    (httpLogLevel & HTTP_LOG_FLAG_WARN)
-#define HTTP_LOG_INFO    (httpLogLevel & HTTP_LOG_FLAG_INFO)
-#define HTTP_LOG_VERBOSE (httpLogLevel & HTTP_LOG_FLAG_VERBOSE)
-#define HTTP_LOG_TRACE   (httpLogLevel & HTTP_LOG_FLAG_TRACE)
+#define HTTP_LOG_ERROR   0
+#define HTTP_LOG_WARN    0
+#define HTTP_LOG_INFO    0
+#define HTTP_LOG_VERBOSE 0
+#define HTTP_LOG_TRACE   0
 
 // Configure asynchronous logging.
 // We follow the default configuration,
