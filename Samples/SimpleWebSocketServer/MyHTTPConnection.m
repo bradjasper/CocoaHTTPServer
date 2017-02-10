@@ -58,7 +58,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 	
 	if([path isEqualToString:@"/service"])
 	{
-		HTTPLogInfo(@"MyHTTPConnection: Creating MyWebSocket...");
+		//HTTPLogInfo(@"MyHTTPConnection: Creating MyWebSocket...");
 		
 		return [[MyWebSocket alloc] initWithRequest:request socket:asyncSocket];		
 	}

@@ -12,7 +12,7 @@
 - (id) initWithFilePath:(NSString*)path headers:(NSDictionary*)headers body:(id)body {
   if ((self = [super init])) {
     if ([headers objectForKey:@"Content-Range"]) {
-      HTTPLogError(@"Content-Range not supported for upload to \"%@\"", path);
+      //HTTPLogError(@"Content-Range not supported for upload to \"%@\"", path);
       _status = 400;
     } else {
       BOOL overwrite = [[NSFileManager defaultManager] fileExistsAtPath:path];
@@ -26,7 +26,7 @@
       if (success) {
         _status = overwrite ? 200 : 201;
       } else {
-        HTTPLogError(@"Failed writing upload to \"%@\"", path);
+        //HTTPLogError(@"Failed writing upload to \"%@\"", path);
         _status = 403;
       }
     }

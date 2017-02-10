@@ -70,7 +70,7 @@
 - (BOOL) appendData:(NSData *)data { 
     // Can't parse without boundary;
     if( nil == boundaryData ) {
-		HTTPLogError(@"MultipartFormDataParser: Trying to parse multipart without specifying a valid boundary");
+		//HTTPLogError(@"MultipartFormDataParser: Trying to parse multipart without specifying a valid boundary");
 		assert(false);
         return NO;
     }
@@ -223,7 +223,7 @@
 
 				if( nil == currentHeader ) {
 					// we've found the data is in wrong format.
-					HTTPLogError(@"MultipartFormDataParser: MultipartFormDataParser: wrong input format, coulnd't get a valid header");
+					//HTTPLogError(@"MultipartFormDataParser: MultipartFormDataParser: wrong input format, coulnd't get a valid header");
 					return NO;
 				}
                 if( [delegate respondsToSelector:@selector(processStartOfPartWithHeader:)] ) {

@@ -120,7 +120,7 @@
       } else if ([requestContentBody isKindOfClass:[NSData class]]) {
         return [[PUTResponse alloc] initWithFilePath:filePath headers:[request allHeaderFields] bodyData:requestContentBody];
       } else {
-        HTTPLogError(@"Internal error");
+        //HTTPLogError(@"Internal error");
       }
     }
   }
@@ -142,7 +142,7 @@
         if ([requestContentBody isKindOfClass:[NSString class]]) {
           requestContentBody = [NSData dataWithContentsOfFile:requestContentBody];
         } else if (![requestContentBody isKindOfClass:[NSData class]]) {
-          HTTPLogError(@"Internal error");
+          //HTTPLogError(@"Internal error");
           return nil;
         }
       }

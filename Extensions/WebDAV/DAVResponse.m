@@ -99,7 +99,7 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
       } else if ([depthHeader isEqualToString:@"1"]) {
         depth = 1;
       } else {
-        HTTPLogError(@"Unsupported DAV depth \"%@\"", depthHeader);
+        //HTTPLogError(@"Unsupported DAV depth \"%@\"", depthHeader);
         return nil;
       }
       
@@ -172,10 +172,10 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
       }
       
       if (![[NSFileManager defaultManager] fileExistsAtPath:[path stringByDeletingLastPathComponent]]) {
-        HTTPLogError(@"Missing intermediate collection(s) at \"%@\"", path);
+        //HTTPLogError(@"Missing intermediate collection(s) at \"%@\"", path);
         _status = 409;
       } else if (![[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:NULL]) {
-        HTTPLogError(@"Failed creating collection at \"%@\"", path);
+        //HTTPLogError(@"Failed creating collection at \"%@\"", path);
         _status = 405;
       }
     }
@@ -184,7 +184,7 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
     // 9.9 MOVE Method
     if ([method isEqualToString:@"MOVE"] || [method isEqualToString:@"COPY"]) {
       if ([method isEqualToString:@"COPY"] && ![[headers objectForKey:@"Depth"] isEqualToString:@"infinity"]) {
-        HTTPLogError(@"Unsupported DAV depth \"%@\"", [headers objectForKey:@"Depth"]);
+        //HTTPLogError(@"Unsupported DAV depth \"%@\"", [headers objectForKey:@"Depth"]);
         return nil;
       }
       
@@ -206,26 +206,26 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
       
       BOOL isDirectory;
       if (![[NSFileManager defaultManager] fileExistsAtPath:[destinationPath stringByDeletingLastPathComponent] isDirectory:&isDirectory] || !isDirectory) {
-        HTTPLogError(@"Invalid destination path \"%@\"", destinationPath);
+        //HTTPLogError(@"Invalid destination path \"%@\"", destinationPath);
         _status = 409;
       } else {
         BOOL existing = [[NSFileManager defaultManager] fileExistsAtPath:destinationPath];
         if (existing && [[headers objectForKey:@"Overwrite"] isEqualToString:@"F"]) {
-          HTTPLogError(@"Pre-existing destination path \"%@\"", destinationPath);
+          //HTTPLogError(@"Pre-existing destination path \"%@\"", destinationPath);
           _status = 412;
         } else {
           if ([method isEqualToString:@"COPY"]) {
             if ([[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:NULL]) {
               _status = existing ? 204 : 201;
             } else {
-              HTTPLogError(@"Failed copying \"%@\" to \"%@\"", sourcePath, destinationPath);
+              //HTTPLogError(@"Failed copying \"%@\" to \"%@\"", sourcePath, destinationPath);
               _status = 403;
             }
           } else {
             if ([[NSFileManager defaultManager] moveItemAtPath:sourcePath toPath:destinationPath error:NULL]) {
               _status = existing ? 204 : 201;
             } else {
-              HTTPLogError(@"Failed moving \"%@\" to \"%@\"", sourcePath, destinationPath);
+              //HTTPLogError(@"Failed moving \"%@\" to \"%@\"", sourcePath, destinationPath);
               _status = 403;
             }
           }
@@ -312,7 +312,7 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
         _status = 200;
         //HTTPLogVerbose(@"Pretending to lock \"%@\"", resourcePath);
       } else {
-        HTTPLogError(@"Locking request \"%@/%@/%@\" for \"%@\" is not allowed", scope, type, depth, resourcePath);
+        //HTTPLogError(@"Locking request \"%@/%@/%@\" for \"%@\" is not allowed", scope, type, depth, resourcePath);
         _status = 403;
       }
     }

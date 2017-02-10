@@ -15,7 +15,7 @@
     if ([[NSFileManager defaultManager] removeItemAtPath:path error:NULL]) {
       _status = exists ? 200 : 204;
     } else {
-      HTTPLogError(@"Failed deleting \"%@\"", path);
+      //HTTPLogError(@"Failed deleting \"%@\"", path);
       _status = 404;
     }
   }

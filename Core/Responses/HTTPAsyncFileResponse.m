@@ -142,7 +142,7 @@
 	fileFD = open([filePath UTF8String], (O_RDONLY | O_NONBLOCK));
 	if (fileFD == NULL_FD)
 	{
-		HTTPLogError(@"%@: Unable to open file. filePath: %@", THIS_FILE, filePath);
+		//HTTPLogError(@"%@: Unable to open file. filePath: %@", THIS_FILE, filePath);
 		
 		return NO;
 	}
@@ -188,7 +188,7 @@
 			
 			if (readBuffer == NULL)
 			{
-				HTTPLogError(@"%@[%p]: Unable to allocate buffer", THIS_FILE, self);
+				//HTTPLogError(@"%@[%p]: Unable to allocate buffer", THIS_FILE, self);
 				
 				[self pauseReadSource];
 				[self abort];
@@ -206,14 +206,14 @@
 		// Check the results
 		if (result < 0)
 		{
-			HTTPLogError(@"%@: Error(%i) reading file(%@)", THIS_FILE, errno, filePath);
+			//HTTPLogError(@"%@: Error(%i) reading file(%@)", THIS_FILE, errno, filePath);
 			
 			[self pauseReadSource];
 			[self abort];
 		}
 		else if (result == 0)
 		{
-			HTTPLogError(@"%@: Read EOF on file(%@)", THIS_FILE, filePath);
+			//HTTPLogError(@"%@: Read EOF on file(%@)", THIS_FILE, filePath);
 			
 			[self pauseReadSource];
 			[self abort];
@@ -305,7 +305,7 @@
 	off_t result = lseek(fileFD, (off_t)offset, SEEK_SET);
 	if (result == -1)
 	{
-		HTTPLogError(@"%@[%p]: lseek failed - errno(%i) filePath(%@)", THIS_FILE, self, errno, filePath);
+		//HTTPLogError(@"%@[%p]: lseek failed - errno(%i) filePath(%@)", THIS_FILE, self, errno, filePath);
 		
 		[self abort];
 	}

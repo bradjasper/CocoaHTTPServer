@@ -40,7 +40,7 @@
  * Step 3:
  * Replace your NSLog statements with HTTPLog statements according to the severity of the message.
  * 
- * NSLog(@"Fatal error, no dohickey found!"); -> HTTPLogError(@"Fatal error, no dohickey found!");
+ * NSLog(@"Fatal error, no dohickey found!"); -> //HTTPLogError(@"Fatal error, no dohickey found!");
  * 
  * HTTPLog works exactly the same as NSLog.
  * This means you can pass it multiple variables just like NSLog.
@@ -98,13 +98,13 @@
 
 // Define logging primitives.
 
-#define HTTPLogError(frmt, ...)    LOG_OBJC_MAYBE(HTTP_LOG_ASYNC_ERROR,   httpLogLevel, HTTP_LOG_FLAG_ERROR,  \
+#define //HTTPLogError(frmt, ...)    LOG_OBJC_MAYBE(HTTP_LOG_ASYNC_ERROR,   httpLogLevel, HTTP_LOG_FLAG_ERROR,  \
                                                   HTTP_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
 #define //HTTPLogWarn(frmt, ...)     LOG_OBJC_MAYBE(HTTP_LOG_ASYNC_WARN,    httpLogLevel, HTTP_LOG_FLAG_WARN,   \
                                                   HTTP_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define HTTPLogInfo(frmt, ...)     LOG_OBJC_MAYBE(HTTP_LOG_ASYNC_INFO,    httpLogLevel, HTTP_LOG_FLAG_INFO,    \
+#define //HTTPLogInfo(frmt, ...)     LOG_OBJC_MAYBE(HTTP_LOG_ASYNC_INFO,    httpLogLevel, HTTP_LOG_FLAG_INFO,    \
                                                   HTTP_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
 #define HTTPLogVerbose(frmt, ...)  LOG_OBJC_MAYBE(HTTP_LOG_ASYNC_VERBOSE, httpLogLevel, HTTP_LOG_FLAG_VERBOSE, \
