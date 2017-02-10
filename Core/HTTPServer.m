@@ -654,7 +654,7 @@
 	// Note: This method in invoked on our bonjour thread.
 	
 	//HTTPLogWarn(@"Failed to Publish Service: domain(%@) type(%@) name(%@) - %@",
-	                                         [ns domain], [ns type], [ns name], errorDict);
+	                                         //[ns domain], [ns type], [ns name], errorDict);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
