@@ -30,12 +30,12 @@
  * Define your logging level in your implementation file:
  * 
  * // Log levels: off, error, warn, info, verbose
- * static const int httpLogLevel = HTTP_LOG_LEVEL_VERBOSE;
+ * //static const int httpLogLevel = HTTP_LOG_LEVEL_VERBOSE;
  * 
  * If you wish to enable tracing, you could do something like this:
  * 
  * // Debug levels: off, error, warn, info, verbose
- * static const int httpLogLevel = HTTP_LOG_LEVEL_INFO | HTTP_LOG_FLAG_TRACE;
+ * //static const int httpLogLevel = HTTP_LOG_LEVEL_INFO | HTTP_LOG_FLAG_TRACE;
  * 
  * Step 3:
  * Replace your NSLog statements with HTTPLog statements according to the severity of the message.
