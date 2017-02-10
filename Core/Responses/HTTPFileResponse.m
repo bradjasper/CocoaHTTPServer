@@ -22,7 +22,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 {
 	if((self = [super init]))
 	{
-		HTTPLogTrace();
+		//HTTPLogTrace();
 		
 		connection = parent; // Parents retain children, children do NOT retain parents
 		
@@ -56,7 +56,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 
 - (void)abort
 {
-	HTTPLogTrace();
+	//HTTPLogTrace();
 	
 	[connection responseDidAbort:self];
 	aborted = YES;
@@ -64,7 +64,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 
 - (BOOL)openFile
 {
-	HTTPLogTrace();
+	//HTTPLogTrace();
 	
 	fileFD = open([filePath UTF8String], O_RDONLY);
 	if (fileFD == NULL_FD)
@@ -75,7 +75,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 		return NO;
 	}
 	
-	HTTPLogVerbose(@"%@[%p]: Open fd[%i] -> %@", THIS_FILE, self, fileFD, filePath);
+	//HTTPLogVerbose(@"%@[%p]: Open fd[%i] -> %@", THIS_FILE, self, fileFD, filePath);
 	
 	return YES;
 }
@@ -101,21 +101,21 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 
 - (UInt64)contentLength
 {
-	HTTPLogTrace();
+	//HTTPLogTrace();
 	
 	return fileLength;
 }
 
 - (UInt64)offset
 {
-	HTTPLogTrace();
+	//HTTPLogTrace();
 	
 	return fileOffset;
 }
 
 - (void)setOffset:(UInt64)offset
 {
-	HTTPLogTrace2(@"%@[%p]: setOffset:%llu", THIS_FILE, self, offset);
+	//HTTPLogTrace2(@"%@[%p]: setOffset:%llu", THIS_FILE, self, offset);
 	
 	if (![self openFileIfNeeded])
 	{
@@ -137,7 +137,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 
 - (NSData *)readDataOfLength:(NSUInteger)length
 {
-	HTTPLogTrace2(@"%@[%p]: readDataOfLength:%lu", THIS_FILE, self, (unsigned long)length);
+	//HTTPLogTrace2(@"%@[%p]: readDataOfLength:%lu", THIS_FILE, self, (unsigned long)length);
 	
 	if (![self openFileIfNeeded])
 	{
@@ -174,7 +174,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 	
 	// Perform the read
 	
-	HTTPLogVerbose(@"%@[%p]: Attempting to read %lu bytes from file", THIS_FILE, self, (unsigned long)bytesToRead);
+	//HTTPLogVerbose(@"%@[%p]: Attempting to read %lu bytes from file", THIS_FILE, self, (unsigned long)bytesToRead);
 	
 	ssize_t result = read(fileFD, buffer, bytesToRead);
 	
@@ -196,7 +196,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 	}
 	else // (result > 0)
 	{
-		HTTPLogVerbose(@"%@[%p]: Read %ld bytes from file", THIS_FILE, self, (long)result);
+		//HTTPLogVerbose(@"%@[%p]: Read %ld bytes from file", THIS_FILE, self, (long)result);
 		
 		fileOffset += result;
 		
@@ -208,7 +208,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 {
 	BOOL result = (fileOffset == fileLength);
 	
-	HTTPLogTrace2(@"%@[%p]: isDone - %@", THIS_FILE, self, (result ? @"YES" : @"NO"));
+	//HTTPLogTrace2(@"%@[%p]: isDone - %@", THIS_FILE, self, (result ? @"YES" : @"NO"));
 	
 	return result;
 }
@@ -220,11 +220,11 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN; // | HTTP_LOG_FLAG_TRACE;
 
 - (void)dealloc
 {
-	HTTPLogTrace();
+	//HTTPLogTrace();
 	
 	if (fileFD != NULL_FD)
 	{
-		HTTPLogVerbose(@"%@[%p]: Close fd[%i]", THIS_FILE, self, fileFD);
+		//HTTPLogVerbose(@"%@[%p]: Close fd[%i]", THIS_FILE, self, fileFD);
 		
 		close(fileFD);
 	}

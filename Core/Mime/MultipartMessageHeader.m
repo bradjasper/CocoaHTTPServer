@@ -52,7 +52,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 			MultipartMessageHeaderField* field = [[MultipartMessageHeaderField alloc] initWithData: fieldData  contentEncoding:formEncoding];
 			if( field ) {
 				[fields setObject:field forKey:field.name];
-				HTTPLogVerbose(@"MultipartFormDataParser: Processed Header field '%@'",field.name);
+				//HTTPLogVerbose(@"MultipartFormDataParser: Processed Header field '%@'",field.name);
 			}
 			else {
 				NSString* fieldStr = [[NSString  alloc] initWithData:fieldData encoding:NSASCIIStringEncoding];

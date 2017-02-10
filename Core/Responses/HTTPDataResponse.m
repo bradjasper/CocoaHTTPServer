@@ -16,7 +16,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_OFF; // | HTTP_LOG_FLAG_TRACE;
 {
 	if((self = [super init]))
 	{
-		HTTPLogTrace();
+		//HTTPLogTrace();
 		
 		offset = 0;
 		data = dataParam;
@@ -26,7 +26,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_OFF; // | HTTP_LOG_FLAG_TRACE;
 
 - (void)dealloc
 {
-	HTTPLogTrace();
+	//HTTPLogTrace();
 	
 }
 
@@ -34,28 +34,28 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_OFF; // | HTTP_LOG_FLAG_TRACE;
 {
 	UInt64 result = (UInt64)[data length];
 	
-	HTTPLogTrace2(@"%@[%p]: contentLength - %llu", THIS_FILE, self, result);
+	//HTTPLogTrace2(@"%@[%p]: contentLength - %llu", THIS_FILE, self, result);
 	
 	return result;
 }
 
 - (UInt64)offset
 {
-	HTTPLogTrace();
+	//HTTPLogTrace();
 	
 	return offset;
 }
 
 - (void)setOffset:(UInt64)offsetParam
 {
-	HTTPLogTrace2(@"%@[%p]: setOffset:%lu", THIS_FILE, self, (unsigned long)offset);
+	//HTTPLogTrace2(@"%@[%p]: setOffset:%lu", THIS_FILE, self, (unsigned long)offset);
 	
 	offset = (NSUInteger)offsetParam;
 }
 
 - (NSData *)readDataOfLength:(NSUInteger)lengthParameter
 {
-	HTTPLogTrace2(@"%@[%p]: readDataOfLength:%lu", THIS_FILE, self, (unsigned long)lengthParameter);
+	//HTTPLogTrace2(@"%@[%p]: readDataOfLength:%lu", THIS_FILE, self, (unsigned long)lengthParameter);
 	
 	NSUInteger remaining = [data length] - offset;
 	NSUInteger length = lengthParameter < remaining ? lengthParameter : remaining;
@@ -71,7 +71,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_OFF; // | HTTP_LOG_FLAG_TRACE;
 {
 	BOOL result = (offset == [data length]);
 	
-	HTTPLogTrace2(@"%@[%p]: isDone - %@", THIS_FILE, self, (result ? @"YES" : @"NO"));
+	//HTTPLogTrace2(@"%@[%p]: isDone - %@", THIS_FILE, self, (result ? @"YES" : @"NO"));
 	
 	return result;
 }

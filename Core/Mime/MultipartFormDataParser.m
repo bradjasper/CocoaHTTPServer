@@ -101,7 +101,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 			if(	pendingData.length >= 2 ) {
 				if( *(uint16_t*)(pendingData.bytes + offset) == 0x2D2D ) {
 					// we found the multipart end. all coming next is an epilogue.
-					HTTPLogVerbose(@"MultipartFormDataParser: End of multipart message");
+					//HTTPLogVerbose(@"MultipartFormDataParser: End of multipart message");
 					waitingForCRLF = YES;
 					reachedEpilogue = YES;
 					offset+= 2;
@@ -127,7 +127,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 				char* bytes = (char*) workingData.bytes;
 				if( *(uint16_t*)(bytes + offset) == 0x2D2D ) {
 					// we found the multipart end. all coming next is an epilogue.
-					HTTPLogVerbose(@"MultipartFormDataParser: End of multipart message");
+					//HTTPLogVerbose(@"MultipartFormDataParser: End of multipart message");
 					checkForContentEnd = NO;
 					reachedEpilogue = YES;
 					// still wait for CRLF, that comes after boundary, but before epilogue.
@@ -230,7 +230,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
                     [delegate processStartOfPartWithHeader:currentHeader];
                 }
 
-				HTTPLogVerbose(@"MultipartFormDataParser: MultipartFormDataParser: Retrieved part header.");
+				//HTTPLogVerbose(@"MultipartFormDataParser: MultipartFormDataParser: Retrieved part header.");
 			}
 			// skip the two trailing \r\n, in addition to the whole header.
 			offset = headerEnd + 4;	
@@ -261,7 +261,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 			NSData* decodedData = [MultipartFormDataParser decodedDataFromData:[NSData dataWithBytesNoCopy:(char*)workingData.bytes + offset length:workingData.length - offset - sizeToLeavePending freeWhenDone:NO] encoding:currentEncoding];
 			
 			if( [delegate respondsToSelector:@selector(processContent:WithHeader:)] ) {
-				HTTPLogVerbose(@"MultipartFormDataParser: Processed %"FMTNSINT" bytes of body",sizeToPass);
+				//HTTPLogVerbose(@"MultipartFormDataParser: Processed %"FMTNSINT" bytes of body",sizeToPass);
 
 				[delegate processContent: decodedData WithHeader:currentHeader];
 			}
@@ -280,7 +280,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 
 			if( [delegate respondsToSelector:@selector(processEndOfPartWithHeader:)] ){
 				[delegate processEndOfPartWithHeader:currentHeader];
-				HTTPLogVerbose(@"MultipartFormDataParser: End of body part");
+				//HTTPLogVerbose(@"MultipartFormDataParser: End of body part");
 			}
 			currentHeader = nil;
 
@@ -356,7 +356,7 @@ static const int httpLogLevel = HTTP_LOG_LEVEL_WARN;
 			if( [delegate respondsToSelector:@selector(processPreambleData:)] ) {
 				NSData* preambleData = [NSData dataWithBytesNoCopy: (char*) data.bytes length: data.length - offset - boundaryLength freeWhenDone:NO];
 				[delegate processPreambleData:preambleData];
-				HTTPLogVerbose(@"MultipartFormDataParser: processed preamble");
+				//HTTPLogVerbose(@"MultipartFormDataParser: processed preamble");
 			}
 			pendingData = [NSMutableData dataWithBytes: data.bytes + data.length - boundaryLength length:boundaryLength];
 		}

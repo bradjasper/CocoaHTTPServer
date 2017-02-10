@@ -310,7 +310,7 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
         [_headers setObject:@"application/xml; charset=\"utf-8\"" forKey:@"Content-Type"];
         _data = [xmlString dataUsingEncoding:NSUTF8StringEncoding];
         _status = 200;
-        HTTPLogVerbose(@"Pretending to lock \"%@\"", resourcePath);
+        //HTTPLogVerbose(@"Pretending to lock \"%@\"", resourcePath);
       } else {
         HTTPLogError(@"Locking request \"%@/%@/%@\" for \"%@\" is not allowed", scope, type, depth, resourcePath);
         _status = 403;
@@ -326,7 +326,7 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
       
       NSString* token = [headers objectForKey:@"Lock-Token"];
       _status = token ? 204 : 400;
-      HTTPLogVerbose(@"Pretending to unlock \"%@\"", resourcePath);
+      //HTTPLogVerbose(@"Pretending to unlock \"%@\"", resourcePath);
     }
     
   }

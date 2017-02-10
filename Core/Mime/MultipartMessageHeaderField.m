@@ -72,7 +72,7 @@ NSString* extractParamValue(const char* bytes, NSUInteger length, NSStringEncodi
 	}
 	
 	value = [[NSString alloc] initWithBytes:bytes length: separatorOffset encoding:encoding];
-	HTTPLogVerbose(@"MultipartFormDataParser: Processing  header field '%@' : '%@'",name,value);
+	//HTTPLogVerbose(@"MultipartFormDataParser: Processing  header field '%@' : '%@'",name,value);
 	// skipe the separator and the next ' ' symbol
 	bytes += separatorOffset + 2;
 	length -= separatorOffset + 2;
@@ -133,7 +133,7 @@ NSString* extractParamValue(const char* bytes, NSUInteger length, NSStringEncodi
 				}
 #endif
 				[params setObject:paramValue forKey:currentParam];
-				HTTPLogVerbose(@"MultipartFormDataParser: header param: %@ = %@",currentParam,paramValue);
+				//HTTPLogVerbose(@"MultipartFormDataParser: header param: %@ = %@",currentParam,paramValue);
 			}
 
 			currentParam = nil;
@@ -164,7 +164,7 @@ NSString* extractParamValue(const char* bytes, NSUInteger length, NSStringEncodi
 		}
 #endif
 		[params setObject:paramValue forKey:currentParam];
-		HTTPLogVerbose(@"MultipartFormDataParser: header param: %@ = %@",currentParam,paramValue);
+		//HTTPLogVerbose(@"MultipartFormDataParser: header param: %@ = %@",currentParam,paramValue);
 		currentParam = nil;
 	}
 	
