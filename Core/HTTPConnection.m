@@ -2073,7 +2073,7 @@ static NSMutableArray *recentNonces;
 					if (contentLength == nil)
 					{
 						//HTTPLogWarn(@"%@[%p]: Method expects request body, but had no specified Content-Length",
-									THIS_FILE, self);
+									//THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
 						return;
@@ -2082,7 +2082,7 @@ static NSMutableArray *recentNonces;
 					if (![NSNumber parseString:(NSString *)contentLength intoUInt64:&requestContentLength])
 					{
 						//HTTPLogWarn(@"%@[%p]: Unable to parse Content-Length header into a valid number",
-									THIS_FILE, self);
+									//THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
 						return;
@@ -2099,7 +2099,7 @@ static NSMutableArray *recentNonces;
 					if (![NSNumber parseString:(NSString *)contentLength intoUInt64:&requestContentLength])
 					{
 						//HTTPLogWarn(@"%@[%p]: Unable to parse Content-Length header into a valid number",
-									THIS_FILE, self);
+									//THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
 						return;
@@ -2108,7 +2108,7 @@ static NSMutableArray *recentNonces;
 					if (requestContentLength > 0)
 					{
 						//HTTPLogWarn(@"%@[%p]: Method not expecting request body had non-zero Content-Length",
-									THIS_FILE, self);
+									//THIS_FILE, self);
 						
 						[self handleInvalidRequest:nil];
 						return;

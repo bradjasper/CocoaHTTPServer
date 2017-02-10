@@ -122,12 +122,12 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
             } else if (!xmlStrcmp(node->name, (const xmlChar*)"getcontentlength")) {
               properties |= kDAVProperty_ContentLength;
             } else {
-              HTTPLogWarn(@"Unknown DAV property requested \"%s\"", node->name);
+              //HTTPLogWarn(@"Unknown DAV property requested \"%s\"", node->name);
             }
             node = node->next;
           }
         } else {
-          HTTPLogWarn(@"HTTP Server: Invalid DAV properties\n%@", [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+          //HTTPLogWarn(@"HTTP Server: Invalid DAV properties\n%@", [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
         }
         xmlFreeDoc(document);
       }
@@ -265,7 +265,7 @@ static xmlNodePtr _XMLChildWithName(xmlNodePtr child, const xmlChar* name) {
             }
           }
         } else {
-          HTTPLogWarn(@"HTTP Server: Invalid DAV properties\n%@", [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
+          //HTTPLogWarn(@"HTTP Server: Invalid DAV properties\n%@", [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding]);
         }
         xmlFreeDoc(document);
       } else {
